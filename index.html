@@ -1,0 +1,79 @@
+
+<html>
+
+<head>
+  <title>ToDoList</title>
+<style>
+.task
+{
+display:flex;
+padding:50px;
+height:fit-content;
+width:fit-content;
+border:solid 2px black;
+border-radius:30px;
+}
+
+.complete
+{
+background-color:Green;
+color:white;
+margin:10px;
+}
+
+.delete
+{
+color:white;
+background-color:red;
+margin:10px;
+}
+</style>
+</head>
+
+<body>
+  <center><h1>TO-DO-LIST</h1>
+  <input id="input" type="text" placeholder="enter the task"><button style="margin-left:10px;" onclick="create()">Create</button>
+    </center>
+    <br><hr>
+      
+<h1>Task list</h1>
+<div id="task_list">
+
+</div>
+  <script>
+ var taskno=0;
+
+function create()
+{
+  let task=document.getElementById("input").value.trim();
+  
+  if(task=="")
+ {
+    alert("enter the task");
+    return;
+  }
+  
+  taskno++;
+  
+  document.getElementById("task_list").innerHTML+=`<div class="task" id="${taskno}"><h3>${task}</h3><button class="complete" onclick="complete('${taskno}')">Complete</button><button class="delete" onclick="deletetask('${taskno}')">Delete</button></div>`;
+  
+  
+document.getElementById("input").value="";
+
+
+}
+
+function complete(id)
+{
+  document.getElementById(id).querySelector("h3").style.textDecoration="line-through";
+}
+
+function deletetask(id)
+{
+  document.getElementById(id).remove();
+}
+
+</script>
+</body>
+
+</html>
